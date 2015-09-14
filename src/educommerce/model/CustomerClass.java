@@ -124,7 +124,6 @@ public class CustomerClass
 	// ------------------------------------------------------------
 	public static Boolean Register(String gender, String firstName, String lastName, String emailAddress, String loginPassword)
 	{
-
 		Boolean result = false;
 		String passwordHash = BCrypt.hashpw(loginPassword, BCrypt.gensalt(12));
 

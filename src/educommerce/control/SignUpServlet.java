@@ -9,14 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import educommerce.model.CustomerClass;
-
-/**
- * Servlet implementation class SignUpServlet
+/*This servlet is used to sign up customers,
+ * request from login.jsp to sign up as a new customer
+ * is thrown to this servlet,  
  */
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String firstName = request.getParameter("firstName");
@@ -26,17 +25,12 @@ public class SignUpServlet extends HttpServlet {
 		String retrypassword = request.getParameter("retryPassword");
 		String gender = request.getParameter("gender");
 		
-		System.out.println(firstName);
-		System.out.println(lastName);
-		System.out.println(email);
-		System.out.println(password);
-		
 		if(!password.equals(retrypassword))
 			response.sendRedirect("message.jsp?errorFlag=1");
 			
-		boolean checkRegistration = CustomerClass.Register(gender, firstName, lastName, email, password);
-		System.out.println(checkRegistration);
-		if(checkRegistration)
+		boolean doRegistration = CustomerClass.Register(gender, firstName, lastName, email, password);
+		System.out.println(doRegistration);
+		if(doRegistration)
 		{
 		    HttpSession customerSession = request.getSession();
 		    customerSession.setAttribute("color", "green");
