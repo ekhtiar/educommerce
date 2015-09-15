@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import webshop.model.ProductInfo;
-import webshop.model.dto.Product;
+import educommerce.model.ProductInfo;
+import educommerce.model.dto.Product;
 
 
 public class CartServlet extends HttpServlet {
