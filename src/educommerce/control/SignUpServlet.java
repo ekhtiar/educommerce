@@ -18,6 +18,7 @@ public class SignUpServlet extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//fetch the user information 
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
@@ -25,8 +26,13 @@ public class SignUpServlet extends HttpServlet {
 		String retrypassword = request.getParameter("retryPassword");
 		String gender = request.getParameter("gender");
 		
+		//check if password has been entered correctly twice!
 		if(!password.equals(retrypassword))
-			response.sendRedirect("message.jsp?errorFlag=1");
+		{
+		    HttpSession customerSession = request.getSession();
+		    customerSession.setAttribute("color", "red");
+		    customerSession.setAttribute("message", "you entered the same password twice");
+		}
 			
 		boolean doRegistration = CustomerClass.Register(gender, firstName, lastName, email, password);
 		System.out.println(doRegistration);

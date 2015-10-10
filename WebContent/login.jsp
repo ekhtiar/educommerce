@@ -71,11 +71,6 @@
 			</div>
 		</div>
 	</section><!--/form-->
-	
-	
-	
-	
-
   
     <script src="js/jquery.js"></script>
 	<script src="js/price-range.js"></script>

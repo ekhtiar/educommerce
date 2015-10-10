@@ -1,5 +1,5 @@
 <!-- the index page has three major components which included from page_includes/:
-1. the page_includes/header.jsp where there is the logic for displaing login/logout and displaying messages
+1. the page_includes/header.jsp where there is the logic for displaying login/logout and displaying messages
 2. the slider  which is included in page_includes/frontpage.jsp
 3. the product display which is included in page_includes/productdisplay.jsp-->
 

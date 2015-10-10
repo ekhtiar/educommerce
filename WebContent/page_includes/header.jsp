@@ -25,8 +25,7 @@
 						
 						<!-- check if a user has logged in, if they are logged in then display
 						logout in the menu, else display login link in the top menu -->
-						<%
-							
+						<%	
 						if(customerSession.getAttribute("email") == null)		
 							out.println("<a href=\"login.jsp\"><i class=\"fa fa-lock\"></i> Login</a>");
 						else

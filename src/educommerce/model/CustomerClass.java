@@ -107,16 +107,31 @@ public class CustomerClass
 
 	// ------------------------------------------------------------
 	// Method is called when a customer wants to log in
+	// Called from = educommerce.control.LoginServlet
 	// ------------------------------------------------------------
 	public static Boolean Login(String email_address, String enteredPassword)
-	{
-
+	{	/*
+		In the educommerce database the customer table contains all the customer information.
+		This method first runs a query to retrieve the stored password based on the email address provided.
+		Then the result is returned in boolean true / false
+		*/
+		//create boolean variable to return result
+		boolean result = false;
+		//build the query
 		String query = "SELECT login_password from customer WHERE email_address ='" + email_address + "';";
+		//query is run and result is returned using our DBUtil class and getStringResult method
 		String storedPassword = DBUtil.getStringResult(query, "login_password");
-
-		boolean matched = BCrypt.checkpw(enteredPassword, storedPassword);
-		// System.out.println(matched);
-		return matched;
+		//we have to handle the case of bad email address here (as it will probably throw a null string 
+		//exception. if the result is returned null, we store "notFound" in storedPassword (for future use 
+		//perhaps) and move on. As the result boolean variable is originally in false state.
+		if(storedPassword.isEmpty()){
+			storedPassword = "notFound";
+		}
+		//if the storedPassword is not null then we try to match the password, here if the password
+		else{
+		result = BCrypt.checkpw(enteredPassword, storedPassword);
+		}
+		return result;
 	}
 
 	// ------------------------------------------------------------

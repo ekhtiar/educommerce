@@ -36,15 +36,20 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		//create checkFlag and validate the login
+		//create checkFlag and validate the login using the Login method in CustomerClass located in com.educommerce.model
 		boolean checkFlag = CustomerClass.Login(email, password) ;
 		
 		//check the state of customer login and store in session object
 		if(checkFlag) {
 			HttpSession customerSession = request.getSession();
 			customerSession.setAttribute("email", email);
-			response.sendRedirect("index.jsp");
+			
+		}else{
+			HttpSession customerSession = request.getSession();
+			customerSession.setAttribute("color", "red");
+			customerSession.setAttribute("message", "incorrect user name or password");
 		}
+		response.sendRedirect("index.jsp");
 	}
 
 }
